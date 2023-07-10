@@ -24,6 +24,8 @@ public class PlayerMovement : Singleton<PlayerMovement>
 
     float normalSpeed;
 
+    public PanelManager panelManager;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -87,6 +89,15 @@ public class PlayerMovement : Singleton<PlayerMovement>
         //}
     }
 
-  
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            GameManager.instance.SwitchState("GameOver");
+            panelManager.switchPanel("GameOver");
+        }
+    }
+
+
 }
 

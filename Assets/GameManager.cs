@@ -22,8 +22,7 @@ public class GameManager : Singleton<GameManager>
         if (actualState == newState) return;
         actualState = newState;
 
-
-        OnStateChange.Invoke(actualState);
+        OnStateChange?.Invoke(actualState);
     }
 
   

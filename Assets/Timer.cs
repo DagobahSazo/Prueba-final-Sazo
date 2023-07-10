@@ -1,39 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class Timer : MonoBehaviour
 {
     public float startTime;
-
     public TextMeshProUGUI relojText;
-
     public PanelManager panelManager;
 
-    void Start()
+    private bool isRunning;
+
+    private void Start()
     {
-        
+        StartTimer();
     }
 
-    
-    void Update()
+    private void StartTimer()
     {
+        isRunning = true;
+        StartCoroutine(TimerCoroutine());
+    }
 
-        relojText.text = startTime.ToString("0.0");
-
-        startTime -= Time.deltaTime;
-
-        if(startTime <= 0)
+    private IEnumerator TimerCoroutine()
+    {
+        while (isRunning)
         {
+            relojText.text = startTime.ToString("0.0");
+            startTime -= Time.deltaTime;
 
-           Win();
+            if (startTime <= 0)
+            {
+                Win();
+                yield break; 
+            }
 
+            yield return null; 
         }
-
-        
     }
-
 
     public void Win()
     {
@@ -41,3 +44,4 @@ public class Timer : MonoBehaviour
         panelManager.switchPanel("Win");
     }
 }
+
