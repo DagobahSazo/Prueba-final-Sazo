@@ -20,6 +20,7 @@ public class EstadosTime : MonoBehaviour
     {
         if (state == "Gay")
 	    {
+            
             Time.timeScale = 1f;
         }
 
