@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        
+     
         StartTimer();
     }
 
@@ -30,7 +32,10 @@ public class Timer : MonoBehaviour
 
             if (startTime <= 0)
             {
+                
+                yield return new WaitForSeconds(0.1f);
                 Win();
+                
                 yield break; 
             }
 
@@ -40,8 +45,11 @@ public class Timer : MonoBehaviour
 
     public void Win()
     {
+        
         GameManager.instance.SwitchState("Win");
         panelManager.switchPanel("Win");
     }
+
+   
 }
 

@@ -25,6 +25,6 @@ public class GameManager : Singleton<GameManager>
         OnStateChange?.Invoke(actualState);
     }
 
-  
+ 
 
 }
