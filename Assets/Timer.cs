@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
 
     private void StartTimer()
     {
+        startTime = 10f;
         isRunning = true;
         StartCoroutine(TimerCoroutine());
     }
@@ -50,6 +51,39 @@ public class Timer : MonoBehaviour
         panelManager.switchPanel("Win");
     }
 
-   
+    private void OnEnable()
+    {
+        GameManager.OnStateChange += HandleStateChange;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnStateChange -= HandleStateChange;
+    }
+
+    private void HandleStateChange(string state)
+    {
+        if (state == "Gay")
+        {
+
+           StartTimer();
+        }
+        else if (state == "GameOver")
+        {
+           Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
+
+        else if (state == "Win")
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
+        else if (state == "Menu")
+        {
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
+
+
+    }
+
 }
 
